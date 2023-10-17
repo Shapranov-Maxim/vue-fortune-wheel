@@ -38,7 +38,7 @@ export function useRotate (props: PropsType, emit: Function) {
   })
 
   const forceStopRotation = () => {
-    isRotating.value = false;
+    onRotateEnd()
   }
 
   const rotateDuration = computed(() => {
@@ -46,14 +46,26 @@ export function useRotate (props: PropsType, emit: Function) {
   })
 
   const rotateStyle  = computed(() => {
-    return {
+    if (isRotating.value) {
+      return {
         '-webkit-transform': `rotateZ(${rotateEndDeg.value}deg)`,
         transform: `rotateZ(${rotateEndDeg.value}deg)`,
         '-webkit-transition-duration': `${rotateDuration.value}s`,
         'transition-duration': `${rotateDuration.value}s`,
         '-webkit-transition-timing-function:': props.timingFun,
-        'transition-timing-function': props.timingFun
+        'transition-timing-function': props.timingFun,
       }
+    } else {
+      return {
+        '-webkit-transform': `rotateZ(${rotateEndDeg.value}deg)`,
+        transform: `rotateZ(${rotateEndDeg.value}deg)`,
+        '-webkit-transition-duration': `${rotateDuration.value}s`,
+        'transition-duration': `${rotateDuration.value}s`,
+        '-webkit-transition-timing-function:': props.timingFun,
+        'transition-timing-function': props.timingFun,
+        'transition': 'none'
+      }
+    }
   })
 
   const rotateBase = computed(() => {
