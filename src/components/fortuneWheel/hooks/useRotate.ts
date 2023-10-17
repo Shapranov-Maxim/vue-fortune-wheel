@@ -37,6 +37,10 @@ export function useRotate (props: PropsType, emit: Function) {
     return idArr
   })
 
+  const forceStopRotation = () => {
+    isRotating.value = false;
+  }
+
   const rotateDuration = computed(() => {
     return isRotating.value ? props.duration / 1000 : 0
   })
@@ -125,6 +129,7 @@ export function useRotate (props: PropsType, emit: Function) {
   return {
     rotateStyle,
     handleClick,
-    onRotateEnd
+    onRotateEnd,
+    forceStopRotation
   }
 }
