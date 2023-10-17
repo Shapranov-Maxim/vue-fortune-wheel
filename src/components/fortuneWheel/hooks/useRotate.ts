@@ -130,6 +130,8 @@ export function useRotate (props: PropsType, emit: Function) {
     rotateStyle,
     handleClick,
     onRotateEnd,
-    forceStopRotation
+    forceStopRotation,
+    isRotating,
+    rotateEndDeg,
   }
 }
